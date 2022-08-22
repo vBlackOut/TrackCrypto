@@ -1,0 +1,10 @@
+{
+  "BRISE-USD": {
+      "config": {"float": 10, "devise": "$"},
+      "1": {"solde": 3105926659, "prix_begin": 0.00000038, "date_entry": "28/07/2022 10:00"}
+  },
+   "SOL-EUR": { 
+      "config": {"float": 2, "devise": "€"},
+      "1": {"solde": 250, "prix_begin": 41.60, "date_entry": "12/08/2022 10:00"}
+  }
+}
