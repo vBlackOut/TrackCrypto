@@ -99,6 +99,20 @@ while 1:
         #                 list_value.append(data.split("   ")[1])
             price_series = pd.Series(today_data['Close'])
             #percent_change_today = float(get_percentage_diff((max(today_data['Close'])-min(today_data['Close'])), today_data['Close'][-1]))
+            if len(today_data['Close']) <= 1 :
+                # print("Waiting data collecting")
+                count = 0
+                while 1:
+                    today_data = data.history(interval="15m", period='1d',  progress=True)
+                    if len(today_data['Close']) <= 1:
+                        if count %2:
+                            print(".", end="\r")
+                        else:
+                            print("collect data please wait{}".format("."*int((count-(0.5*count)))), end="")
+                        time.sleep(2)
+                        count += 1
+                    else:
+                        break
             percent_change_today =  round(100--get_percentage_diff((max(today_data['Close'])-min(today_data['Close'])), today_data['Close'][-1]), 2)
             #print(percent_change_today)
             dict_current_price[key] = {'now': today_data['Close'][-1], "percent": calcul_percent(today_data['Close'][-1], today_data['Close'][1], 100),  "high_today": max(today_data['Close']), "low_today": min(today_data['Close']), "percent_change": percent_change_today}
